@@ -4,7 +4,7 @@ A HMOS library which provides AppRater animation
 
 ## Source
 
-Inspired by [kikoso/AppRate-for-Android](https://github.com/kikoso/AppRate-for-Android)
+Inspired by [kikoso/AppRate-for-Android](https://github.com/kikoso/AppRate-for-Android) - version 1.0
 
 ## Feature
 AppRate for Android is a library that allows your users to rate your application in a non intrusive way.
