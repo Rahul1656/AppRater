@@ -4,6 +4,7 @@ A HMOS library which provides AppRater animation
 
 ## Source
 
+Inspired by [kikoso/AppRate-for-Android](https://github.com/kikoso/AppRate-for-Android)
 
 ## Feature
 AppRate for Android is a library that allows your users to rate your application in a non intrusive way.
@@ -16,7 +17,7 @@ AppRate for Android is a library that allows your users to rate your application
 1. For using apprater module in sample app, include the source code and add the below dependencies in entry/build.gradle to generate hap/support.har.
 ```groovy
 	dependencies {
-		implementation project(':apprater')
+		implementation project(':app_module')
                 implementation fileTree(dir: 'libs', include: ['*.har'])
                 testImplementation 'junit:junit:4.13'
 	}
