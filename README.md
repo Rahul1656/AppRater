@@ -33,7 +33,7 @@ AppRate for Android is a library that allows your users to rate your application
 
 ## Usage
 
-#### In layout.xml
+#### Include following code in your layout:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <DirectionalLayout
