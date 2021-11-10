@@ -9,7 +9,7 @@ A HMOS library which provides AppRater animation
 AppRate for Android is a library that allows your users to rate your application in a non intrusive way.
  A window with options to rate, remind later or reject is displayed according to your configuration.
 
-<img src="https://github.com/priyankabb153/RainyView/blob/master/screenshots/rainyview2.gif" width="356">
+<img src="screenshots/Screenshot (2524).png" width="356">
 
 
 ## Dependency
