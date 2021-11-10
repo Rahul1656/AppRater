@@ -17,10 +17,11 @@ AppRate for Android is a library that allows your users to rate your application
 1. For using apprater module in sample app, include the source code and add the below dependencies in entry/build.gradle to generate hap/support.har.
 ```groovy
 	dependencies {
-		implementation project(':app_module')
-                implementation fileTree(dir: 'libs', include: ['*.har'])
-                testImplementation 'junit:junit:4.13'
-	}
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
+    implementation project(path: ':app_module')
+    testImplementation 'junit:junit:4.13'
+    ohosTestImplementation 'com.huawei.ohos.testkit:runner:1.0.0.100'
+}
 ```
 2. For using apprater in separate application using har file, add the har file in the entry/libs folder and add the dependencies in entry/build.gradle file.
 ```groovy
