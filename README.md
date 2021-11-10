@@ -46,13 +46,13 @@ AppRate for Android is a library that allows your users to rate your application
 
 #### In code
 ```
-super.onStart(intent);//
-        setUIContent(ResourceTable.Layout_ability_main);//
-        new AppRater(this)//
-                .setMinDays(0)//
-                .setMinLaunches(0)//
-                .setAppTitle("My Title")//
-                .init();//
+super.onStart(intent);
+        setUIContent(ResourceTable.Layout_ability_main);
+        new AppRater(this)
+                .setMinDays(0)
+                .setMinLaunches(0)
+                .setAppTitle("My Title")
+                .init();
 
 ```
 
