@@ -1,4 +1,4 @@
-# AppRate
+# AppRater
 
 A HMOS library which provides AppRater animation
 
