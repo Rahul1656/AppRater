@@ -12,15 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.hmos.compat.app;
 
-import com.enrique.apprater.ResourceTable;
-import ohos.agp.components.*;
+
+import ohos.agp.components.Button;
+import ohos.agp.components.Component;
+import ohos.agp.components.ComponentContainer;
+import ohos.agp.components.DirectionalLayout;
+import ohos.agp.components.LayoutScatter;
+import ohos.agp.components.Text;
 import ohos.agp.utils.TextAlignment;
 import ohos.agp.window.dialog.CommonDialog;
 import ohos.agp.window.dialog.IDialog;
 import ohos.app.Context;
+import com.enrique.apprater.ResourceTable;
 
+/**
+ * AlertDialog.
+ */
 public class AlertDialog extends CommonDialog implements IDialog {
 
     final Builder builder;
@@ -28,7 +38,9 @@ public class AlertDialog extends CommonDialog implements IDialog {
     private AlertDialog(Builder builder) {
         super(builder.getContext());
         this.builder = builder;
-        ComponentContainer rootLayout = (ComponentContainer) LayoutScatter.getInstance(builder.getContext()).parse(getInflateLayout(), null, false);
+        ComponentContainer rootLayout = (ComponentContainer) LayoutScatter
+                .getInstance(builder.getContext())
+                .parse(getInflateLayout(), null, false);
         prepareDialogViewButton(rootLayout, builder);
         setContentCustomComponent(rootLayout);
     }
@@ -97,6 +109,15 @@ public class AlertDialog extends CommonDialog implements IDialog {
             return this;
         }
 
+        /** SetPositiveButton.
+         *
+         *
+         * @param positiveButtonText pb.
+         *
+         * @param listener listener
+         *
+         * @return positive button.
+         */
         public Builder setPositiveButton(String positiveButtonText, ClickedListener listener) {
             this.positiveButtonText = positiveButtonText;
             positiveClickedListener = listener;
@@ -108,6 +129,14 @@ public class AlertDialog extends CommonDialog implements IDialog {
             return this;
         }
 
+        /** neutral nb.
+         *
+         * @param neutralButtonText  nb.
+         *
+         * @param listener Member variable of preferences
+         *
+         * @return AppraterObject.
+         */
         public Builder setNeutralButton(String neutralButtonText, ClickedListener listener) {
             this.neutralButtonText = neutralButtonText;
             neutralClickedListener = listener;
@@ -119,6 +148,14 @@ public class AlertDialog extends CommonDialog implements IDialog {
             return this;
         }
 
+        /** Negative button.
+         *
+         * @param negativeButtonText nb.
+         *
+         * @param listener listener
+         *
+         * @return.
+         */
         public Builder setNegativeButton(String negativeButtonText, ClickedListener listener) {
             this.negativeButtonText = negativeButtonText;
             negativeClickedListener = listener;
@@ -139,7 +176,31 @@ public class AlertDialog extends CommonDialog implements IDialog {
         return ResourceTable.Layout_alert_dialog_layout;
     }
 
-    private void prepareDialogViewButton(ComponentContainer rootLayout, Builder builder) {
+    private void prepareDialogViewButtonDy(ComponentContainer rootLayout) {
+        DirectionalLayout buttonLayout = AlertDialog.getComponent(rootLayout, ResourceTable.Id_btnLayout);
+        if (builder.positiveButtonText != null) {
+            this.setButton(2, builder.positiveButtonText, builder.positiveClickedListener);
+        }
+        if (builder.negativeButtonText != null) {
+            this.setButton(1, builder.negativeButtonText, builder.negativeClickedListener);
+        }
+        if (builder.neutralButtonText != null) {
+            this.setButton(0, builder.neutralButtonText, builder.neutralClickedListener);
+        }
+        if (builder.positiveButton != null && buttonLayout != null) {
+            buttonLayout.addComponent(builder.positiveButton);
+        }
+
+        if (builder.negativeButton != null && buttonLayout != null) {
+            buttonLayout.addComponent(builder.negativeButton);
+        }
+
+        if (builder.neutralButton != null && buttonLayout != null) {
+            buttonLayout.addComponent(builder.neutralButton);
+        }
+    }
+
+    private void prepareDialogViewButton(ComponentContainer rootLayout, Builder builder) throws NullPointerException {
         DirectionalLayout titleFrame = AlertDialog.getComponent(rootLayout, ResourceTable.Id_titleFrame);
         Text tvTitle = AlertDialog.getComponent(rootLayout, ResourceTable.Id_title);
         Text tvContent = AlertDialog.getComponent(rootLayout, ResourceTable.Id_content);
@@ -165,42 +226,29 @@ public class AlertDialog extends CommonDialog implements IDialog {
                 tvContent.setVisibility(Component.HIDE);
             }
         }
-        DirectionalLayout buttonLayout = AlertDialog.getComponent(rootLayout, ResourceTable.Id_btnLayout);
-        if (builder.positiveButtonText != null) {
-            this.setButton(2, builder.positiveButtonText, builder.positiveClickedListener);
-        }
-        if (builder.negativeButtonText != null) {
-            this.setButton(1, builder.negativeButtonText, builder.negativeClickedListener);
-        }
-        if (builder.neutralButtonText != null) {
-            this.setButton(0, builder.neutralButtonText, builder.neutralClickedListener);
-        }
-        if (builder.positiveButton != null) {
-            buttonLayout.addComponent(builder.positiveButton);
-        }
-        if (builder.negativeButton != null) {
-            buttonLayout.addComponent(builder.negativeButton);
-        }
-        if (builder.neutralButton != null) {
-            buttonLayout.addComponent(builder.neutralButton);
-        }
+
+        prepareDialogViewButtonDy(rootLayout);
+
+
+
+
     }
 
-    /**
-     * getComponent
+    /**  Negative button.
      *
-     * @param root root component
-     * @param id id of the component
-     * @return component
+     * @param root root.
+     *
+     * @param id   id
+     *
+     * @param <E>   E.
+     *
+     * @return returns.
      */
+
     public static <E extends Component> E getComponent(Component root, int id) {
         if (root == null) {
             return null;
         }
-        try {
-            return (E) root.findComponentById(id);
-        } catch (ClassCastException ex) {
-            throw ex;
-        }
+        return (E) root.findComponentById(id);
     }
 }
