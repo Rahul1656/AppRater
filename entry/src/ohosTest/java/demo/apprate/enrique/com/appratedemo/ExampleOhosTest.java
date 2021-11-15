@@ -26,7 +26,7 @@ public class ExampleOhosTest {
     @Test
     public void testBundleName() {
         final String actualBundleName = AbilityDelegatorRegistry.getArguments().getTestBundleName();
-        assertEquals("com.example.app_android", actualBundleName);
+        assertEquals("demo.apprate.enrique.com.appratedemo", actualBundleName);
     }
 
 
@@ -43,11 +43,6 @@ public class ExampleOhosTest {
         AppRater appRater=new AppRater(context);
         assertNotNull(appRater.init());
     }
-    @Test
-    public void testinit1()
-    {
-        AppRater appRater1=new AppRater(context);
-        assertNotEquals(null,appRater1.init());
-    }
+
 
 }
