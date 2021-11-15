@@ -42,7 +42,7 @@ sonarqube {
         property "sonar.projectKey", "AppRate"
         property "sonar.organization", "applibgroup"
         property "sonar.host.url", "http://localhost:9005"
-        property "sonar.sources", "entry"
+        property "sonar.sources", "entry,app_module"
         property "sonar.java.binaries", "entry/build"
     }
 }
